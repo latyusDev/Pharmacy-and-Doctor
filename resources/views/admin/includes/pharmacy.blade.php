@@ -13,7 +13,7 @@
         @if ($pharmacy->status)
                 <div>
                     <form action="/admin/pharmacies/release/{{$pharmacy->id}}" method="post">
-                        @method('PUT')
+                        @method('PATCH')
                      @csrf
                      <button type="submit">Release</button>
                     </form>
@@ -23,7 +23,7 @@
             
                 <div>
                     <form action="/admin/pharmacies/ban/{{$pharmacy->id}}" method="post">
-                        @method('PUT')
+                        @method('PATCH')
                      @csrf
                      <button type="submit">Ban</button>
                     </form>

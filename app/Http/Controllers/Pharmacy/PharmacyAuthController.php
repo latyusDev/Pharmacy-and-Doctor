@@ -13,13 +13,13 @@ class PharmacyAuthController extends Controller
 {
     public function register(PharmacyRegisterRequest $request)
     {
-        $pharmacy_details = $request->only($this->data());
-        $pharmacy_details['password'] = Hash::make($pharmacy_details['password']);
-        $pharmacy = Pharmacy::create($pharmacy_details);
-        $address_details = $request->except($this->data());
-        $address_details['addresable_type'] = Pharmacy::class;
-        $address_details['addresable_id'] = $pharmacy->id;
-        Address::create($address_details);
+        $pharmacyDetails = $request->safe()->only(['name','email','password']);
+        $pharmacyDetails['password'] = Hash::make($pharmacyDetails['password']);
+        $pharmacy = Pharmacy::create($pharmacyDetails);
+        $addressDetails = $request->safe()->except(['name','email','password']);
+        $addressDetails['addresable_type'] = Pharmacy::class;
+        $addressDetails['addresable_id'] = $pharmacy->id;
+        Address::create($addressDetails);
         auth('pharmacy')->login($pharmacy);
         return redirect()->route('pharmacy.welcome');
     }
@@ -42,12 +42,5 @@ class PharmacyAuthController extends Controller
         return redirect()->route('pharmacy.login');
     }
     
-    private function data()
-    {
-        return [
-            'name',
-            'email',
-            'password'
-        ];
-    }
+   
 }

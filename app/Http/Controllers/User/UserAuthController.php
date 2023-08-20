@@ -13,10 +13,12 @@ class UserAuthController extends Controller
 {       
     public function register(UserRegisterRequest $request)
     {   
-        $user_details = $request->only($this->parameter());
-        $user_details['password'] = Hash::make($user_details['password']);
-        $user = User::create($user_details);
-        $address_details = $request->except($this->parameter());
+        $userDetails = $request->only(['first_name','last_name',
+                                            'email','password']);
+        $userDetails['password'] = Hash::make($userDetails['password']);
+        $user = User::create($userDetails);
+        $address_details = $request->except(['first_name','last_name',
+                                                'email','password']);
         $address_details['addresable_type'] = User::class;
         $address_details['addresable_id'] = $user->id;
         Address::create($address_details);
@@ -44,13 +46,5 @@ class UserAuthController extends Controller
     
     }
 
-    private function parameter()
-    {
-        return [
-            'first_name',
-            'last_name',
-            'email',
-            'password'
-        ];
-    }
+  
 }

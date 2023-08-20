@@ -13,13 +13,15 @@ class AdminAuthController extends Controller
 {
     public function register(AdminRegisterRequest $request)
     {   
-        $admin_detail = $request->only($this->data());
-        $admin_detail['password'] = Hash::make($admin_detail['password']);
-        $admin = Admin::create($admin_detail);
-        $address_details = $request->except($this->data());
-        $address_details['addresable_type'] = Admin::class;
-        $address_details['addresable_id'] = $admin->id;
-        Address::create($address_details);
+        $adminDetail = $request->safe()->only(['last_name','first_name',
+                                                    'email','password']);
+        $adminDetail['password'] = Hash::make($adminDetail['password']);
+        $admin = Admin::create($adminDetail);
+        $addressDetails = $request->safe()->except(['last_name','first_name',
+                                                        'email','password']);
+        $addressDetails['addresable_type'] = Admin::class;
+        $addressDetails['addresable_id'] = $admin->id;
+        Address::create($addressDetails);
         auth('admin')->login($admin);
         return redirect()->route('admin.index');
     }
@@ -42,13 +44,5 @@ class AdminAuthController extends Controller
         return redirect()->route('admin.login');
     }
     
-    private function data()
-    {
-        return [
-            'last_name',
-            'first_name',
-            'email',
-            'password',
-        ];
-    }
+  
 }

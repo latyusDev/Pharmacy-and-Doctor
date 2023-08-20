@@ -28,8 +28,6 @@ Route::get('/',function(){
     return redirect()->route('user.login');
 });
 
-
-
 Route::group(['prefix'=>'pharmacy','as'=>'pharmacy.','controller'=>PharmacyReadController::class],
 function(){
     Route::get('/register','register');
@@ -96,10 +94,10 @@ Route::group(['prefix'=>'admin','as'=>'admin.','middleware'=>'admin']
     });
     // update user && pharmacy records
     Route::controller(AdminUpdateController::class)->group(function(){
-        Route::put('/users/ban/{user}','banUser');
-        Route::put('/users/release/{user}','releaseUser');
-        Route::put('/pharmacies/ban/{pharmacy}','banPharmacy');
-        Route::put('/pharmacies/release/{pharmacy}','releasePharmacy');
+        Route::patch('/users/ban/{user}','banUser');
+        Route::patch('/users/release/{user}','releaseUser');
+        Route::patch('/pharmacies/ban/{pharmacy}','banPharmacy');
+        Route::patch('/pharmacies/release/{pharmacy}','releasePharmacy');
     });
     // delete user && pharmacy records
     Route::controller(AdminDestroyController::class)->group(function(){

@@ -1,16 +1,15 @@
 const search = document.querySelector('.search');
 const output = document.querySelector('.output');
 let drugs = [];
-const getSearch = async()=>{
+const getDrugs = async()=>{
     const url = 'http://127.0.0.1:8000/user/search';
     const response = await fetch(url);
     const data = await response.json();
     drugs = data;
-    console.log(data)
 }
 search.addEventListener('keyup', async(e)=>{
     e.preventDefault();
-    await getSearch();
+    await getDrugs();
     const value = drugs.filter((drug)=>{
         if(search.value==='')
         {

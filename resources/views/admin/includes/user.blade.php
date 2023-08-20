@@ -14,7 +14,7 @@
                 
                 <div>
                     <form action="/admin/users/release/{{$user->id}}" method="post">
-                        @method('PUT')
+                        @method('PATCH')
                      @csrf
                      <button type="submit">Release</button>
                     </form>
@@ -23,7 +23,7 @@
         @else
                 <div>
                     <form action="/admin/users/ban/{{$user->id}}" method="post">
-                        @method('PUT')
+                        @method('PATCH')
                      @csrf
                      <button type="submit">Ban</button>
                     </form>
