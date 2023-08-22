@@ -4,7 +4,7 @@
     @endif
     <section>
     <div>
-        <form action="pharmacy">
+        <form action="">
         <div>
             <button>Search for drugs</button>
             <input type="text" value="{{old('search')}}" name="search">
