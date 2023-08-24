@@ -32,7 +32,8 @@ Route::group(['prefix'=>'pharmacy','as'=>'pharmacy.','controller'=>PharmacyReadC
 function(){
     Route::get('/register','register');
     Route::get('/login','login')->name('login');
-    Route::get('/welcome','welcome')->name('welcome');
+    Route::get('/welcome','index')->name('welcome');
+    Route::get('/welcome/{drug}','show');
 });
 
 Route::resource('pharmacy',PharmacyController::class)->parameters([

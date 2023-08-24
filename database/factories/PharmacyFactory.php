@@ -24,12 +24,6 @@ class PharmacyFactory extends Factory
             'password' => 'aaa', // password
             'remember_token' => Str::random(10),
         ];
-        // [
-        //     'name' => fake()->name(),
-        //     'email' => fake()->unique()->safeEmail(),
-        //     'email_verified_at' => now(),
-        //     'password' => 'aaa', // password
-        //     'remember_token' => Str::random(10),
-        // ];
+       
     }
 }

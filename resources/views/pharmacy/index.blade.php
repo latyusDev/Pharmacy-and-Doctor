@@ -6,12 +6,12 @@
     <a href="/pharmacy/welcome" @style('text-decoration:none')><span @style('font-size:2rem')>&#128281</span></a>
        
     <div @style('margin-block:1rem')>
-        <a href="/pharmacy/create">Create drugs</a>
     </div>
     <div>
+        <h1>Search for drugs or pharmacies</h1>
         <form action="pharmacy">
-        <div>
-            <button>Search for drugs</button>
+            <div>
+                <button>Search</button>
             <input type="text" value="{{old('search')}}" name="search">
         </div>
         </form>
@@ -27,7 +27,8 @@
                  <a href="/pharmacy/{{$drug->id}}">view</a>
             </div>
         @empty
-            <p>No drug is available</p>
+        
+        <p>You currently have no drugs,  <a href="/pharmacy/create">Create drugs</a></p>
             @endforelse
         </div>
 

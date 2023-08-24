@@ -14,6 +14,22 @@ class PharmacyReadController extends Controller
              ->only('welcome');
     }
 
+    public function index()
+    {   
+        $drugs = Drug::latest()->filter(request('search'))
+                               ->simplePaginate(10);
+        return view('pharmacy.welcome',[
+            'drugs'=>$drugs
+        ]);
+    }
+
+    public function show(Drug $drug)
+    {   
+        return view('pharmacy.welcome_show',[
+            'drug'=>$drug
+        ]);
+    }
+
     public function register()
     {
         return view('pharmacy.register_form');
@@ -22,13 +38,5 @@ class PharmacyReadController extends Controller
     public function login()
     {
         return view('pharmacy.login_form');
-    }
-    public function welcome()
-    {   
-        $drugs = Drug::latest()->filter(request('search'))
-                               ->simplePaginate(10);
-        return view('pharmacy.welcome',[
-            'drugs'=>$drugs
-        ]);
     }
 }

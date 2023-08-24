@@ -36,16 +36,14 @@
             </div>
             <div>
                 <label for="">Phone Number</label>
-                {{-- <input value="{{old('phone_number')}}" type="text" name="phone_number"> --}}
-                <input value="08027259386" type="text" name="phone_number">
+                <input value="{{old('phone_number')}}" type="text" name="phone_number">
                 @error('number')
                 <p style="color:red"> {{$message}}</p>
                 @enderror
             </div>
             <div>
                 <label for=""> State</label>
-                {{-- <input value="{{old('state')}}" type="text" name="state"> --}}
-                <input value="Lagos" type="text" name="state">
+                <input value="{{old('state')}}" type="text" name="state">
                 @error('state')
                 <p style="color:red"> {{$message}}</p>
                 @enderror
@@ -54,7 +52,6 @@
             
             <div>
                 <label for=""> Local Government</label>
-                {{-- <input value="{{old('state')}}" type="text" name="state"> --}}
                 <input value="Surulere" type="text" name="local_government">
                 @error('state')
                 <p style="color:red"> {{$message}}</p>
@@ -63,8 +60,7 @@
             
             <div>
                 <label for=""> Street</label>
-                {{-- <input value="{{old('street')}}" type="text" name="street"> --}}
-                <input value="Memudu" type="text" name="street">
+                <input value="{{old('street')}}" type="text" name="street">
                 @error('street')
                 <p style="color:red"> {{$message}}</p>
                 @enderror

@@ -21,7 +21,10 @@ class Drug extends Model
 
     public function scopeFilter($query,$keywords)
     {
-        return $query->where('name','like',"%".$keywords."%");
+        return $query->where('name','like',"%".$keywords."%")
+                     ->orwhereHas('pharmacy',function($query)use($keywords){
+                        return $query->whereName($keywords);
+                      });
     }
 
     public function doctorProfit($price)
